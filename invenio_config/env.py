@@ -31,7 +31,6 @@ import os
 
 
 class InvenioConfigEnvironment(object):
-
     """Load configuration from environment variables."""
 
     def __init__(self, app=None, prefix="INVENIO_"):

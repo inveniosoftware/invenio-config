@@ -28,7 +28,6 @@ from __future__ import absolute_import, print_function
 
 
 class InvenioConfigInstanceFolder(object):
-
     """Load configuration from py file in folder."""
 
     def __init__(self, app=None):

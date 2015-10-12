@@ -30,7 +30,6 @@ import pkg_resources
 
 
 class InvenioConfigModule(object):
-
     """Load configuration from module."""
 
     def __init__(self, app=None, module=None, entrypoint=None):

@@ -30,7 +30,6 @@ import warnings
 
 
 class InvenioConfigDefault(object):
-
     """Load configuration from module."""
 
     def __init__(self, app=None):
