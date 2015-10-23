@@ -26,16 +26,13 @@
 
 from __future__ import absolute_import, print_function
 
-import pkg_resources
-
 
 class InvenioConfigModule(object):
     """Load configuration from module."""
 
-    def __init__(self, app=None, module=None, entrypoint=None):
+    def __init__(self, app=None, module=None):
         """Initialize extension."""
         self.module = module
-        self.entrypoint = entrypoint
         if app:
             self.init_app(app)
 
@@ -43,6 +40,3 @@ class InvenioConfigModule(object):
         """Initialize Flask application."""
         if self.module:
             app.config.from_object(self.module)
-        if self.entrypoint:
-            for ep in pkg_resources.iter_entry_points(group=self.entrypoint):
-                app.config.from_object(ep.module_name)

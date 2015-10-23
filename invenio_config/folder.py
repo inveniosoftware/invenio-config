@@ -28,7 +28,14 @@ from __future__ import absolute_import, print_function
 
 
 class InvenioConfigInstanceFolder(object):
-    """Load configuration from py file in folder."""
+    """Load configuration from py file in folder.
+
+    If the application have instance relative config then the file will be read
+    from the instance folder, otherwise it will be read from the application
+    root path.
+
+    See http://flask.pocoo.org/docs/0.10/config/#instance-folders.
+    """
 
     def __init__(self, app=None):
         """Initialize extension."""

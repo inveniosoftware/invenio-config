@@ -30,9 +30,11 @@ from .default import InvenioConfigDefault
 from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
+from .utils import create_conf_loader
 from .version import __version__
 
 __all__ = (
-    '__version__', 'InvenioConfigDefault', 'InvenioConfigEnvironment',
-    'InvenioConfigInstanceFolder', 'InvenioConfigModule',
+    '__version__', 'create_conf_loader', 'InvenioConfigDefault',
+    'InvenioConfigEnvironment', 'InvenioConfigInstanceFolder',
+    'InvenioConfigModule',
 )
