@@ -22,7 +22,7 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Invenio configuration module."""
+"""Default configuration loader usable by e.g. Invenio-Base."""
 
 from __future__ import absolute_import, print_function
 
@@ -30,11 +30,16 @@ from .default import InvenioConfigDefault
 from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
-from .utils import default_conf_loader
-from .version import __version__
 
-__all__ = (
-    '__version__', 'default_conf_loader', 'InvenioConfigDefault',
-    'InvenioConfigEnvironment', 'InvenioConfigInstanceFolder',
-    'InvenioConfigModule',
-)
+
+def default_conf_loader(config, env_prefix='APP'):
+    """Default configuration loader."""
+    def _conf_loader(app, **kwargs_config):
+        if config:
+            InvenioConfigModule(app=app, module=config)
+        InvenioConfigInstanceFolder(app=app)
+        app.config.update(**kwargs_config)
+        InvenioConfigEnvironment(app=app, prefix='{0}_'.format(env_prefix))
+        InvenioConfigDefault(app=app)
+
+    return _conf_loader
