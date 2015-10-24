@@ -1,8 +1,8 @@
 =======================
- Invenio-Config v0.1.0
+ Invenio-Config v1.0.0
 =======================
 
-Invenio-Config v0.1.0 was released on TBD, 2015.
+Invenio-Config v1.0.0 was released on October 26, 2015.
 
 About
 -----
@@ -19,7 +19,7 @@ What's new
 Installation
 ------------
 
-   $ pip install invenio-config==0.1.0
+   $ pip install invenio-config==1.0.0
 
 Documentation
 -------------
