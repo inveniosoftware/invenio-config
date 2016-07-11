@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -35,7 +35,7 @@ from os.path import join
 from flask import Flask
 
 from invenio_config import InvenioConfigDefault, InvenioConfigEnvironment, \
-    InvenioConfigInstanceFolder, InvenioConfigModule, create_conf_loader
+    InvenioConfigInstanceFolder, InvenioConfigModule, create_config_loader
 
 
 def test_version():
@@ -131,7 +131,7 @@ def test_conf_loader_factory():
         os.environ['APREFIX_ENV'] = 'env'
 
         # Create conf loader
-        conf_loader = create_conf_loader(Config, env_prefix="APREFIX")
+        conf_loader = create_config_loader(Config, env_prefix="APREFIX")
         app = Flask(
             'testapp', instance_path=tmppath, instance_relative_config=True)
         conf_loader(app, **kwargs)

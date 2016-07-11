@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -32,7 +32,7 @@ from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 
 
-def create_conf_loader(config=None, env_prefix='APP'):
+def create_config_loader(config=None, env_prefix='APP'):
     """Create a default configuration loader.
 
     A configuration loader takes a Flask application and keyword arguments and
@@ -55,9 +55,11 @@ def create_conf_loader(config=None, env_prefix='APP'):
     :param env_prefix: Environment variable prefix to import configuration
         from.
     :return: A callable with the method signature
-        ``conf_loader(app, **kwargs)``.
+        ``config_loader(app, **kwargs)``.
+
+    .. versionadded:: 1.0.0
     """
-    def _conf_loader(app, **kwargs_config):
+    def _config_loader(app, **kwargs_config):
         if config:
             InvenioConfigModule(app=app, module=config)
         InvenioConfigInstanceFolder(app=app)
@@ -65,4 +67,18 @@ def create_conf_loader(config=None, env_prefix='APP'):
         InvenioConfigEnvironment(app=app, prefix='{0}_'.format(env_prefix))
         InvenioConfigDefault(app=app)
 
-    return _conf_loader
+    return _config_loader
+
+
+def create_conf_loader(*args, **kwargs):  # pragma: no cover
+    """Create a default configuration loader.
+
+    .. deprecated:: 1.0.0b1
+       Use :func:`create_config_loader` instead.
+    """
+    import warnings
+    warnings.warn(
+        '"create_conf_loader" has been renamed to "create_config_loader".',
+        DeprecationWarning
+    )
+    return create_config_loader(*args, **kwargs)

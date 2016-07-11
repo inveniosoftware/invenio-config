@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -131,7 +131,7 @@ todo_include_todos = False
 html_theme = 'alabaster'
 
 html_theme_options = {
-    'description': 'Invenio configuration module.',
+    'description': 'Invenio configuration loader.',
     'github_user': 'inveniosoftware',
     'github_repo': 'invenio-config',
     'github_button': False,
@@ -311,7 +311,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   (master_doc, 'invenio-config', u'Invenio-Config Documentation',
-   author, 'invenio-config', 'Invenio configuration module.',
+   author, 'invenio-config', 'Invenio configuration loader.',
    'Miscellaneous'),
 ]
 
@@ -329,4 +329,8 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/2.7/', None),
+    'werkzeug': ('http://werkzeug.pocoo.org/docs/', None),
+    'flask': ('http://flask.pocoo.org/docs/', None),
+}

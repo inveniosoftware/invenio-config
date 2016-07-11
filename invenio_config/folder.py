@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -34,7 +34,10 @@ class InvenioConfigInstanceFolder(object):
     from the instance folder, otherwise it will be read from the application
     root path.
 
-    See http://flask.pocoo.org/docs/0.10/config/#instance-folders.
+    More about `instance folders
+    <http://flask.pocoo.org/docs/latest/config/#instance-folders>`_.
+
+    .. versionadded:: 1.0.0
     """
 
     def __init__(self, app=None):

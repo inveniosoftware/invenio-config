@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -31,9 +31,12 @@ import os
 
 
 class InvenioConfigEnvironment(object):
-    """Load configuration from environment variables."""
+    """Load configuration from environment variables.
 
-    def __init__(self, app=None, prefix="INVENIO_"):
+    .. versionadded:: 1.0.0
+    """
+
+    def __init__(self, app=None, prefix='INVENIO_'):
         """Initialize extension."""
         self.prefix = prefix
         if app:
@@ -58,4 +61,4 @@ class InvenioConfigEnvironment(object):
 
             # Set value
             app.config[varname] = value
-            app.logger.debug("{0} = {1}".format(varname, value))
+            app.logger.debug('{0} = {1}'.format(varname, value))

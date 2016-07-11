@@ -41,7 +41,7 @@
         :target: https://github.com/inveniosoftware/invenio-config/blob/master/LICENSE
 
 
-Invenio configuration module.
+Invenio configuration loader.
 
 *This is an experimental developer preview release.*
 

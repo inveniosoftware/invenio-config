@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -30,7 +30,10 @@ import warnings
 
 
 class InvenioConfigDefault(object):
-    """Load configuration from module."""
+    """Load configuration from module.
+
+    .. versionadded:: 1.0.0
+    """
 
     def __init__(self, app=None):
         """Initialize extension."""
@@ -43,7 +46,7 @@ class InvenioConfigDefault(object):
         SECRET_KEY = app.config.get('SECRET_KEY')
 
         if SECRET_KEY is None:
-            app.config["SECRET_KEY"] = 'CHANGE_ME'
+            app.config['SECRET_KEY'] = 'CHANGE_ME'
             warnings.warn(
-                "Set configuration variable SECRET_KEY with random string",
+                'Set configuration variable SECRET_KEY with random string',
                 UserWarning)

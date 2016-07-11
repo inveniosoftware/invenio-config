@@ -25,6 +25,6 @@
 Authors
 =======
 
-Invenio configuration module.
+Invenio configuration loader.
 
 - Lars Holm Nielsen <lars.holm.nielsen@cern.ch>
