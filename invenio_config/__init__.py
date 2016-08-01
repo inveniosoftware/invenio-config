@@ -48,13 +48,12 @@ a temporary directory.
 >>> import tempfile
 >>> tmppath = tempfile.mkdtemp()
 
-In order to make sure that there are no files left in case of exception,
-lets register a clean up function that removes the temporary directory.
+.. testcode::
+   :hide:
 
->>> import atexit
->>> import shutil
->>> atexit.register(lambda: shutil.rmtree(tmppath))
-<function ...>
+   import atexit
+   import shutil
+   atexit.register(lambda: shutil.rmtree(tmppath))
 
 Now we can create a Flask application:
 
