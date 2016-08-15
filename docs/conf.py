@@ -138,8 +138,8 @@ html_theme_options = {
     'github_banner': True,
     'show_powered_by': False,
     'extra_nav_links': {
-        'invenio-config@GitHub': 'http://github.com/inveniosoftware/invenio-config',
-        'invenio-config@PyPI': 'http://pypi.python.org/pypi/invenio-config/',
+        'invenio-config@GitHub': 'https://github.com/inveniosoftware/invenio-config',
+        'invenio-config@PyPI': 'https://pypi.python.org/pypi/invenio-config/',
     }
 }
 
@@ -330,6 +330,7 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
+    # FIXME HTTPS certificate is invalid for *.pocoo.org
     'python': ('https://docs.python.org/2.7/', None),
     'werkzeug': ('http://werkzeug.pocoo.org/docs/', None),
     'flask': ('http://flask.pocoo.org/docs/', None),
