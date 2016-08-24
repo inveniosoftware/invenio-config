@@ -25,7 +25,6 @@
 """Invenio configuration loader."""
 
 import os
-import sys
 
 from setuptools import find_packages, setup
 
@@ -101,6 +100,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Development Status :: 4 - Beta',
     ],
