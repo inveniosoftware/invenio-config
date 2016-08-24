@@ -335,3 +335,6 @@ intersphinx_mapping = {
     'werkzeug': ('http://werkzeug.pocoo.org/docs/', None),
     'flask': ('http://flask.pocoo.org/docs/', None),
 }
+
+# Autodoc configuraton.
+autoclass_content = 'both'
