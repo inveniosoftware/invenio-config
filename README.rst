@@ -44,4 +44,4 @@
 Invenio configuration loader.
 
 * Free software: GPLv2 license
-* Documentation: https://pythonhosted.org/invenio-config/
+* Documentation: https://invenio-config.readthedocs.io/

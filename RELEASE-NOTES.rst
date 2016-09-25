@@ -24,7 +24,7 @@ Installation
 Documentation
 -------------
 
-   https://pythonhosted.org/invenio-config/
+   https://invenio-config.readthedocs.io/
 
 Happy hacking and thanks for flying Invenio-Config.
 
