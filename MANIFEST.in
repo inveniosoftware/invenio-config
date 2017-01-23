@@ -31,10 +31,11 @@ include .lgtm MAINTAINERS
 include LICENSE
 include docs/requirements.txt
 include pytest.ini
+prune docs/_build
 recursive-include docs *.bat
+recursive-include docs Makefile
 recursive-include docs *.py
 recursive-include docs *.rst
-recursive-include docs Makefile
 recursive-include misc *.py
 recursive-include misc *.rst
 recursive-include tests *.py
