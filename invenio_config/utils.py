@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015, 2016 CERN.
+# Copyright (C) 2015, 2016, 2017 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -74,7 +74,8 @@ def create_conf_loader(*args, **kwargs):  # pragma: no cover
     """Create a default configuration loader.
 
     .. deprecated:: 1.0.0b1
-       Use :func:`create_config_loader` instead.
+       Use :func:`create_config_loader` instead. This function will be removed
+       in version 1.0.1.
     """
     import warnings
     warnings.warn(

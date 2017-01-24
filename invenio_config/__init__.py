@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015, 2016 CERN.
+# Copyright (C) 2015, 2016, 2017 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -28,14 +28,17 @@ Invenio-Config is a *base package* of the Invenio digital library framework.
 It is usually installed automatically as a dependency. It should facilitate
 configuration loading from various sources to an application instance.
 
-There are following configuration loaders:
+The following configuration loaders exists:
 
-- `InvenioConfigDefault` - ensure required configuration values are set.
-- `InvenioConfigModule` - for loading configuration from a module.
-- `InvenioConfigInstanceFolder` - for loading configuration from ``cfg`` file
-  in folder.
-- `InvenioConfigEnvironment` - for loading configuration from environment
-  variables with defined prefix (e.g. ``INVENIO_SECRET_KEY``).
+- :py:data:`invenio_config.default.InvenioConfigDefault` - ensure required
+  configuration values are set.
+- :py:data:`invenio_config.module.InvenioConfigModule` - for loading
+  configuration from a Python module.
+- :py:data:`invenio_config.folder.InvenioConfigInstanceFolder` - for loading
+  configuration from ``cfg`` file in an instance folder.
+- :py:data:`invenio_config.env.InvenioConfigEnvironment` - for loading
+  configuration from environment variables with defined prefix (e.g.
+  ``INVENIO_SECRET_KEY``).
 
 It also includes configuration loader factory that it is used to merge these
 sources in predefined order ensuring correct behavior in common scenarios.
@@ -72,7 +75,7 @@ True
 Default
 ~~~~~~~
 The default configuration loader makes sure that the required configuration
-values are always loaded. You should call it after **all** configuration
+values are always loaded. You should call it **after** all configuration
 loaders have been already called.
 
 >>> import warnings
@@ -99,7 +102,7 @@ Here is an example of a configuration object:
 
 Instance Folder
 ~~~~~~~~~~~~~~~
-The runtime configuration should stored in a separate file, ideally located
+The runtime configuration should be stored in a separate file, ideally located
 outiside the actual application package. The configuration files are handled
 as Python files where only variables in uppercase are stored in the application
 config.
@@ -117,8 +120,8 @@ Environment
 Using environment variables is very handy when it comes to configuring
 connections to services like database, Redis server, RabbitMQ, etc. used via
 containers (e.g. Docker). In order to protect your application from reading
-environment variables set by system or other application, you should define
-variable prefix used by loader.
+environment variables set by the system or other applications, you should
+define a variable prefix used by the loader.
 
 >>> os.environ['MYAPP_EXAMPLE'] = 'environment'
 >>> from invenio_config import InvenioConfigEnvironment
