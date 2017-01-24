@@ -7,7 +7,7 @@ Invenio-Config v1.0.0b1 was released on July 12, 2016.
 About
 -----
 
-Invenio configuration moodule.
+Invenio configuration module.
 
 *This is an experimental developer preview release.*
 
