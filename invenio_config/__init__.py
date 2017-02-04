@@ -78,6 +78,9 @@ The default configuration loader makes sure that the required configuration
 values are always loaded. You should call it **after** all configuration
 loaders have been already called.
 
+For instance, the default configuration loader will warn if the ``SECRET_KEY``
+is not defined:
+
 >>> import warnings
 >>> from invenio_config import InvenioConfigDefault
 >>> with warnings.catch_warnings(record=True) as w:
