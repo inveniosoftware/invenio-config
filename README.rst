@@ -43,5 +43,9 @@
 
 Invenio configuration loader.
 
-* Free software: GPLv2 license
-* Documentation: https://invenio-config.readthedocs.io/
+Invenio-Config is a base package of the Invenio digital library framework. It
+is usually installed automatically as a dependency. It facilitates
+configuration loading from various sources such as a Python module, an instance
+folder or environment variables.
+
+Further documentation is available on https://invenio-config.readthedocs.io/.
