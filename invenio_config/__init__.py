@@ -34,6 +34,9 @@ The following configuration loaders exists:
   configuration values are set.
 - :py:data:`invenio_config.module.InvenioConfigModule` - for loading
   configuration from a Python module.
+- :py:data:`invenio_config.entrypoint.InvenioConfigEntryPointModule` - for
+  loading configuration from a Python module specified by an entry point (by
+  default ``invenio_config.module``).
 - :py:data:`invenio_config.folder.InvenioConfigInstanceFolder` - for loading
   configuration from ``cfg`` file in an instance folder.
 - :py:data:`invenio_config.env.InvenioConfigEnvironment` - for loading
@@ -103,6 +106,14 @@ Here is an example of a configuration object:
 >>> app.config['EXAMPLE']
 'module'
 
+Entry point
+~~~~~~~~~~~
+The entry point loader works similar to the module loader, it just loads the
+config module from the entry point ``invenio_config.module``:
+
+>>> from invenio_config import InvenioConfigEntryPointModule
+>>> config_ep = InvenioConfigEntryPointModule(app=app)
+
 Instance Folder
 ~~~~~~~~~~~~~~~
 The runtime configuration should be stored in a separate file, ideally located
@@ -138,11 +149,12 @@ The Invenio-Config comes with an opinionated way of loading configuration,
 that combines loaders in predictable way. You can use
 :func:`invenio_config.utils.create_config_loader` if you would like to:
 
-  1. Load configuration from ``config`` module if provided as argument.
-  2. Load configuration from the instance folder:
+  1. Load configuration from ``invenio_config.module`` entry point group.
+  2. Load configuration from ``config`` module if provided as argument.
+  3. Load configuration from the instance folder:
      ``<app.instance_path>/<app.name>.cfg``.
-  3. Load configuration keyword arguments provided.
-  4. Load configuration from environment variables with the prefix
+  4. Load configuration keyword arguments provided.
+  5. Load configuration from environment variables with the prefix
      ``env_prefix``.
 
 >>> from invenio_config import create_config_loader
@@ -162,12 +174,14 @@ from .default import InvenioConfigDefault
 from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
+from .entrypoint import InvenioConfigEntryPointModule
 from .utils import create_conf_loader, create_config_loader
 from .version import __version__
 
 __all__ = (
     '__version__',
     'InvenioConfigDefault',
+    'InvenioConfigEntryPointModule',
     'InvenioConfigEnvironment',
     'InvenioConfigInstanceFolder',
     'InvenioConfigModule',

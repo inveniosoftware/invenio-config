@@ -33,9 +33,36 @@ import warnings
 from os.path import join
 
 from flask import Flask
+from mock import patch
+from pkg_resources import EntryPoint
 
-from invenio_config import InvenioConfigDefault, InvenioConfigEnvironment, \
+from invenio_config import InvenioConfigDefault, \
+    InvenioConfigEntryPointModule, InvenioConfigEnvironment, \
     InvenioConfigInstanceFolder, InvenioConfigModule, create_config_loader
+
+
+class ConfigEP(EntryPoint):
+    """Mocking of entrypoint."""
+
+    def __init__(self, **kwargs):
+        """Save keyword arguments as config."""
+        self.kwargs = kwargs
+
+    def load(self):
+        """Mock load entry point."""
+        class Config(object):
+            pass
+        for key, val in self.kwargs.items():
+            setattr(Config, key, val)
+        return Config
+
+
+def _mock_ep(eps):
+    """Mock for pkg_resources.iter_entry_points."""
+    def iter_entry_points(name):
+        for ep in eps:
+            yield ep
+    return iter_entry_points
 
 
 def test_version():
@@ -53,6 +80,16 @@ def test_module():
 
     assert not app.config.get('TESTVAR', False)
     InvenioConfigModule(app, module=Config)
+    assert app.config.get('TESTVAR', False)
+
+
+@patch('pkg_resources.iter_entry_points', _mock_ep([ConfigEP(TESTVAR=True)]))
+def test_entry_point():
+    """Test entry point."""
+    app = Flask('testapp')
+
+    assert not app.config.get('TESTVAR', False)
+    InvenioConfigEntryPointModule(app)
     assert app.config.get('TESTVAR', False)
 
 
@@ -105,6 +142,8 @@ def test_env():
     assert app.config.get('JUSTASTRING') == "This is just a string"
 
 
+@patch('pkg_resources.iter_entry_points', _mock_ep([
+    ConfigEP(EP='ep', MODULE='ep', FOLDER='ep', KWARGS='ep', ENV='ep')]))
 def test_conf_loader_factory():
     """Test the conf factory."""
     tmppath = tempfile.mkdtemp()
@@ -137,6 +176,7 @@ def test_conf_loader_factory():
         conf_loader(app, **kwargs)
 
         # Test correct overwriting of values.
+        assert app.config['EP'] == 'ep'
         assert app.config['MODULE'] == 'module'
         assert app.config['FOLDER'] == 'folder'
         assert app.config['KWARGS'] == 'kwargs'

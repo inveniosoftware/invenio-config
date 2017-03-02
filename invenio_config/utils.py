@@ -27,6 +27,7 @@
 from __future__ import absolute_import, print_function
 
 from .default import InvenioConfigDefault
+from .entrypoint import InvenioConfigEntryPointModule
 from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
@@ -41,11 +42,12 @@ def create_config_loader(config=None, env_prefix='APP'):
     This default configuration loader will load configuration in the following
     order:
 
-        1. Load configuration from ``config`` module if provided as argument.
-        2. Load configuration from the instance folder:
+        1. Load configuration from ``invenio_config.module`` entry point group.
+        2. Load configuration from ``config`` module if provided as argument.
+        3. Load configuration from the instance folder:
            ``<app.instance_path>/<app.name>.cfg``.
-        3. Load configuration keyword arguments provided.
-        4. Load configuration from environment variables with the prefix
+        4. Load configuration keyword arguments provided.
+        5. Load configuration from environment variables with the prefix
            ``env_prefix``.
 
     If no secret key has been set a warning will be issued.
@@ -60,6 +62,7 @@ def create_config_loader(config=None, env_prefix='APP'):
     .. versionadded:: 1.0.0
     """
     def _config_loader(app, **kwargs_config):
+        InvenioConfigEntryPointModule(app=app)
         if config:
             InvenioConfigModule(app=app, module=config)
         InvenioConfigInstanceFolder(app=app)

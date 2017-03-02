@@ -34,6 +34,9 @@ Loaders
 .. automodule:: invenio_config.env
    :members:
 
+.. automodule:: invenio_config.entrypoint
+  :members:
+
 .. automodule:: invenio_config.folder
    :members:
 
@@ -45,4 +48,3 @@ Utilities
 
 .. automodule:: invenio_config.utils
    :members:
-
