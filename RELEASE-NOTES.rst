@@ -1,8 +1,8 @@
 =========================
- Invenio-Config v1.0.0b2
+ Invenio-Config v1.0.0b3
 =========================
 
-Invenio-Config v1.0.0b2 was released on January 24, 2017.
+Invenio-Config v1.0.0b3 was released on March 8, 2017.
 
 About
 -----
@@ -17,7 +17,7 @@ What's new
 Installation
 ------------
 
-   $ pip install invenio-config==1.0.0b2
+   $ pip install invenio-config==1.0.0b3
 
 Documentation
 -------------
