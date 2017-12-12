@@ -61,4 +61,3 @@ class InvenioConfigEnvironment(object):
 
             # Set value
             app.config[varname] = value
-            app.logger.debug('{0} = {1}'.format(varname, value))
