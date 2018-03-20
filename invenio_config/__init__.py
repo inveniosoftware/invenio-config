@@ -127,6 +127,16 @@ define a variable prefix used by the loader.
 >>> app.config['EXAMPLE']
 'environment'
 
+You can also set more complex Python literal variables (e.g. dictionaries or
+lists):
+
+>>> os.environ['MYAPP_COMPLEX'] = "{'items': [{'num': 42}, {'foo': 'bar'}]}"
+>>> # ...or export MYAPP_COMPLEX="{'items': [{'num': 42}, {'foo': 'bar'}]}"
+>>> config_environment = InvenioConfigEnvironment(app=app, prefix='MYAPP_')
+>>> app.config['COMPLEX']
+{'items': [{'num': 42}, {'foo': 'bar'}]}
+
+
 Factory Pattern
 ---------------
 The Invenio-Config comes with an opinionated way of loading configuration,
