@@ -1,3 +1,10 @@
+..
+    This file is part of Invenio.
+    Copyright (C) 2015-2018 CERN.
+
+    Invenio is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
 ================
  Invenio-Config
 ================
@@ -8,14 +15,8 @@
 .. image:: https://img.shields.io/coveralls/inveniosoftware/invenio-config.svg
         :target: https://coveralls.io/r/inveniosoftware/invenio-config
 
-.. image:: https://img.shields.io/github/tag/inveniosoftware/invenio-config.svg
-        :target: https://github.com/inveniosoftware/invenio-config/releases
-
-.. image:: https://img.shields.io/pypi/dm/invenio-config.svg
-        :target: https://pypi.python.org/pypi/invenio-config
-
-.. image:: https://img.shields.io/github/license/inveniosoftware/invenio-config.svg
-        :target: https://github.com/inveniosoftware/invenio-config/blob/master/LICENSE
+.. image:: https://img.shields.io/pypi/v/invenio-config.svg
+        :target: https://pypi.org/pypi/invenio-config
 
 
 Invenio configuration loader.
