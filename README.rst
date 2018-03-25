@@ -9,6 +9,9 @@
  Invenio-Config
 ================
 
+.. image:: https://img.shields.io/github/license/inveniosoftware/invenio-config.svg
+        :target: https://github.com/inveniosoftware/invenio-config/blob/master/LICENSE
+
 .. image:: https://img.shields.io/travis/inveniosoftware/invenio-config.svg
         :target: https://travis-ci.org/inveniosoftware/invenio-config
 
