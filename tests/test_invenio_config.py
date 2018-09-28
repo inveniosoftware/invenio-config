@@ -28,9 +28,15 @@ from invenio_config import InvenioConfigDefault, \
 class ConfigEP(EntryPoint):
     """Mocking of entrypoint."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, name=None, module_name=None, **kwargs):
         """Save keyword arguments as config."""
+        self.name = name
+        self.module_name = module_name
         self.kwargs = kwargs
+
+    def __str__(self):
+        """Mock __str__ method."""
+        return self.name or ''
 
     def load(self):
         """Mock load entry point."""
@@ -75,6 +81,22 @@ def test_entry_point():
     assert not app.config.get('TESTVAR', False)
     InvenioConfigEntryPointModule(app)
     assert app.config.get('TESTVAR', False)
+
+
+UNSORTED_ENTRY_POINTS = [
+    ConfigEP(name='20_app', module_name='last_app.config', TESTVAR='last'),
+    ConfigEP(name='00_app', module_name='first_app.config', TESTVAR='first'),
+    ConfigEP(name='10_app', module_name='middle_app.config', TESTVAR='middle'),
+]
+
+
+@patch('pkg_resources.iter_entry_points', _mock_ep(UNSORTED_ENTRY_POINTS))
+def test_entry_points_loading_order():
+    """Test that entry points are loaded alphabetically ordered."""
+    app = Flask('testapp')
+
+    InvenioConfigEntryPointModule(app)
+    assert app.config['TESTVAR'] == 'last'
 
 
 def test_folder():

@@ -26,7 +26,12 @@ def create_config_loader(config=None, env_prefix='APP'):
     This default configuration loader will load configuration in the following
     order:
 
-        1. Load configuration from ``invenio_config.module`` entry point group.
+        1. Load configuration from ``invenio_config.module`` entry points
+           group, following the alphabetical ascending order in case of
+           multiple entry points defined.
+           For example, the config of an app with entry point name ``10_app``
+           will be loaded after the config of an app with entry point name
+           ``00_app``.
         2. Load configuration from ``config`` module if provided as argument.
         3. Load configuration from the instance folder:
            ``<app.instance_path>/<app.name>.cfg``.
