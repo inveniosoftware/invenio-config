@@ -11,12 +11,19 @@
 from __future__ import absolute_import, print_function
 
 import warnings
+from operator import attrgetter
 
 import pkg_resources
 
 
 class InvenioConfigEntryPointModule(object):
     """Load configuration from module defined by entry point.
+
+    Configurations are loaded in alphabetical ascending order, meaning that an
+    entry point named ``00_name`` will be loaded first and an entry point named
+    ``10_name`` will be loaded as last. This ensures that configurations
+    defined in ``10_name`` app override configurations defined in ``00_name``
+    app.
 
     .. versionadded:: 1.0.0
     """
@@ -30,5 +37,9 @@ class InvenioConfigEntryPointModule(object):
     def init_app(self, app):
         """Initialize Flask application."""
         if self.entry_point_group:
-            for ep in pkg_resources.iter_entry_points(self.entry_point_group):
+            eps = sorted(pkg_resources.iter_entry_points(
+                self.entry_point_group), key=attrgetter('name'))
+            for ep in eps:
+                app.logger.debug("Loading config for entry point {}".format(
+                    ep))
                 app.config.from_object(ep.load())
