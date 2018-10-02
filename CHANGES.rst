@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.0.1 (released 2018-10-02)
+
+- Application configurations are now sorted and loaded in alphabetical order.
+
 Version 1.0.0 (released 2018-03-23)
 
 - Initial public release.
