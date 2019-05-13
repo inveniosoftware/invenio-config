@@ -165,10 +165,10 @@ that combines loaders in predictable way. You can use
 from __future__ import absolute_import, print_function
 
 from .default import InvenioConfigDefault
+from .entrypoint import InvenioConfigEntryPointModule
 from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
-from .entrypoint import InvenioConfigEntryPointModule
 from .utils import create_conf_loader, create_config_loader
 from .version import __version__
 
