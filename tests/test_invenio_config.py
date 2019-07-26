@@ -23,6 +23,7 @@ from pkg_resources import EntryPoint
 from invenio_config import InvenioConfigDefault, \
     InvenioConfigEntryPointModule, InvenioConfigEnvironment, \
     InvenioConfigInstanceFolder, InvenioConfigModule, create_config_loader
+from invenio_config.default import ALLOWED_HTML_ATTRS, ALLOWED_HTML_TAGS
 
 
 class ConfigEP(EntryPoint):
@@ -133,6 +134,30 @@ def test_default():
         assert len(w) == 0
         InvenioConfigDefault(app)
         assert len(w) == 0
+
+
+def test_default_allowed_html_tags():
+    """Test instance folder loading."""
+    app = Flask('testapp')
+
+    InvenioConfigDefault(app)
+    assert app.config['ALLOWED_HTML_TAGS'] == ALLOWED_HTML_TAGS
+
+    app.config['ALLOWED_HTML_TAGS'] = ["a"]
+    InvenioConfigDefault(app)
+    assert app.config['ALLOWED_HTML_TAGS'] == ["a"]
+
+
+def test_default_allowed_html_attrs():
+    """Test instance folder loading."""
+    app = Flask('testapp')
+
+    InvenioConfigDefault(app)
+    assert app.config['ALLOWED_HTML_ATTRS'] == ALLOWED_HTML_ATTRS
+
+    app.config['ALLOWED_HTML_ATTRS'] = "test override"
+    InvenioConfigDefault(app)
+    assert app.config['ALLOWED_HTML_ATTRS'] == "test override"
 
 
 def test_env():

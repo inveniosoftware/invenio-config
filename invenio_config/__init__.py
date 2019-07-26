@@ -65,8 +65,17 @@ The default configuration loader makes sure that the required configuration
 values are always loaded. You should call it **after** all configuration
 loaders have been already called.
 
-For instance, the default configuration loader will warn if the ``SECRET_KEY``
-is not defined:
+The following default configuration values exist:
+
+- :py:data:`SECRET_KEY` - A secret key that will be used for securely signing
+  the session cookie and can be used for any other security related needs.
+- :py:data:`~invenio_config.default.ALLOWED_HTML_TAGS` - allowed tags used for
+  html sanitizing by bleach.
+- :py:data:`~invenio_config.default.ALLOWED_HTML_ATTRS` - allowed attributes
+  used for html sanitizing by bleach.
+
+The default configuration loader will warn if the ``SECRET_KEY`` is not
+defined:
 
 >>> import warnings
 >>> from invenio_config import InvenioConfigDefault

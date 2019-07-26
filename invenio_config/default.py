@@ -12,6 +12,44 @@ from __future__ import absolute_import, print_function
 
 import warnings
 
+#: Allowed tags used for html sanitizing by bleach.
+ALLOWED_HTML_TAGS = [
+    'a',
+    'abbr',
+    'acronym',
+    'b',
+    'blockquote',
+    'br',
+    'code',
+    'div',
+    'em',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'i',
+    'li',
+    'ol',
+    'p',
+    'pre',
+    'span',
+    'strike',
+    'strong',
+    'sub',
+    'sup',
+    'u',
+    'ul',
+]
+
+#: Allowed attributes used for html sanitizing by bleach.
+ALLOWED_HTML_ATTRS = {
+    '*': ['class'],
+    'a': ['href', 'title', 'name', 'class', 'rel'],
+    'abbr': ['title'],
+    'acronym': ['title'],
+}
+
 
 class InvenioConfigDefault(object):
     """Load configuration from module.
@@ -34,3 +72,9 @@ class InvenioConfigDefault(object):
             warnings.warn(
                 'Set configuration variable SECRET_KEY with random string',
                 UserWarning)
+
+        if app.config.get('ALLOWED_HTML_TAGS') is None:
+            app.config['ALLOWED_HTML_TAGS'] = ALLOWED_HTML_TAGS
+
+        if app.config.get('ALLOWED_HTML_ATTRS') is None:
+            app.config['ALLOWED_HTML_ATTRS'] = ALLOWED_HTML_ATTRS
