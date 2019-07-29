@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.0.2 (released 2019-07-29)
+
+- Added `ALLOWED_HTML_TAGS` and `ALLOWED_HTML_ATTRS` config keys.
+
 Version 1.0.1 (released 2018-10-02)
 
 - Application configurations are now sorted and loaded in alphabetical order.
