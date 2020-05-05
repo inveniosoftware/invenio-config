@@ -8,6 +8,12 @@
 Changes
 =======
 
+Version 1.0.3 (released to-be-determined)
+
+- Removed support for Python 2
+- Removed support for Python 3.5
+- Added support for Python 3.6, 3.7, 3.8
+
 Version 1.0.2 (released 2019-07-29)
 
 - Added `ALLOWED_HTML_TAGS` and `ALLOWED_HTML_ATTRS` config keys.
