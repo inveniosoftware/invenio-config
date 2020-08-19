@@ -10,10 +10,9 @@
 
 from __future__ import absolute_import, print_function
 
+import pkg_resources
 import warnings
 from operator import attrgetter
-
-import pkg_resources
 
 
 class InvenioConfigEntryPointModule(object):

@@ -14,10 +14,9 @@ import os
 import shutil
 import tempfile
 import warnings
-from os.path import join
-
 from flask import Flask
 from mock import patch
+from os.path import join
 from pkg_resources import EntryPoint
 
 from invenio_config import InvenioConfigDefault, \
