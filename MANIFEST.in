@@ -16,6 +16,7 @@ include docs/requirements.txt
 include pytest.ini
 prune docs/_build
 recursive-include docs *.bat
+recursive-include .github/workflows *.yml
 recursive-include docs Makefile
 recursive-include docs *.py
 recursive-include docs *.rst
