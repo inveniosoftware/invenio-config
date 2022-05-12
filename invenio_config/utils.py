@@ -17,7 +17,7 @@ from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 
 
-def create_config_loader(config=None, env_prefix='APP'):
+def create_config_loader(config=None, env_prefix="APP"):
     """Create a default configuration loader.
 
     A configuration loader takes a Flask application and keyword arguments and
@@ -50,13 +50,14 @@ def create_config_loader(config=None, env_prefix='APP'):
 
     .. versionadded:: 1.0.0
     """
+
     def _config_loader(app, **kwargs_config):
         InvenioConfigEntryPointModule(app=app)
         if config:
             InvenioConfigModule(app=app, module=config)
         InvenioConfigInstanceFolder(app=app)
         app.config.update(**kwargs_config)
-        InvenioConfigEnvironment(app=app, prefix='{0}_'.format(env_prefix))
+        InvenioConfigEnvironment(app=app, prefix="{0}_".format(env_prefix))
         InvenioConfigDefault(app=app)
 
     return _config_loader
@@ -70,8 +71,9 @@ def create_conf_loader(*args, **kwargs):  # pragma: no cover
        in version 1.0.1.
     """
     import warnings
+
     warnings.warn(
         '"create_conf_loader" has been renamed to "create_config_loader".',
-        DeprecationWarning
+        DeprecationWarning,
     )
     return create_config_loader(*args, **kwargs)

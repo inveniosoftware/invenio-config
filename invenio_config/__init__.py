@@ -180,15 +180,15 @@ from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 from .utils import create_conf_loader, create_config_loader
 
-__version__ = '1.0.3'
+__version__ = "1.0.3"
 
 __all__ = (
-    '__version__',
-    'InvenioConfigDefault',
-    'InvenioConfigEntryPointModule',
-    'InvenioConfigEnvironment',
-    'InvenioConfigInstanceFolder',
-    'InvenioConfigModule',
-    'create_conf_loader',
-    'create_config_loader',
+    "__version__",
+    "InvenioConfigDefault",
+    "InvenioConfigEntryPointModule",
+    "InvenioConfigEnvironment",
+    "InvenioConfigInstanceFolder",
+    "InvenioConfigModule",
+    "create_conf_loader",
+    "create_config_loader",
 )

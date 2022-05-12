@@ -11,7 +11,6 @@
 from __future__ import absolute_import, print_function
 
 import ast
-
 import os
 
 
@@ -21,7 +20,7 @@ class InvenioConfigEnvironment(object):
     .. versionadded:: 1.0.0
     """
 
-    def __init__(self, app=None, prefix='INVENIO_'):
+    def __init__(self, app=None, prefix="INVENIO_"):
         """Initialize extension."""
         self.prefix = prefix
         if app:

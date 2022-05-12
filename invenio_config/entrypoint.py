@@ -10,9 +10,10 @@
 
 from __future__ import absolute_import, print_function
 
-import pkg_resources
 import warnings
 from operator import attrgetter
+
+import pkg_resources
 
 
 class InvenioConfigEntryPointModule(object):
@@ -27,7 +28,7 @@ class InvenioConfigEntryPointModule(object):
     .. versionadded:: 1.0.0
     """
 
-    def __init__(self, app=None, entry_point_group='invenio_config.module'):
+    def __init__(self, app=None, entry_point_group="invenio_config.module"):
         """Initialize extension."""
         self.entry_point_group = entry_point_group
         if app:
@@ -36,9 +37,10 @@ class InvenioConfigEntryPointModule(object):
     def init_app(self, app):
         """Initialize Flask application."""
         if self.entry_point_group:
-            eps = sorted(pkg_resources.iter_entry_points(
-                self.entry_point_group), key=attrgetter('name'))
+            eps = sorted(
+                pkg_resources.iter_entry_points(self.entry_point_group),
+                key=attrgetter("name"),
+            )
             for ep in eps:
-                app.logger.debug("Loading config for entry point {}".format(
-                    ep))
+                app.logger.debug("Loading config for entry point {}".format(ep))
                 app.config.from_object(ep.load())
