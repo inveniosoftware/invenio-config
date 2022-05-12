@@ -179,7 +179,8 @@ from .env import InvenioConfigEnvironment
 from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 from .utils import create_conf_loader, create_config_loader
-from .version import __version__
+
+__version__ = '1.0.3'
 
 __all__ = (
     '__version__',
