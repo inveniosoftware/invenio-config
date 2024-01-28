@@ -1,12 +1,16 @@
 ..
     This file is part of Invenio.
-    Copyright (C) 2015-2018 CERN.
+    Copyright (C) 2015-2024 CERN.
 
     Invenio is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
 
 Changes
 =======
+
+Version 1.0.4 (released 2024-01-28)
+
+- Allow table HTML tags for sanitization
 
 Version 1.0.3 (released 2020-05-06)
 
