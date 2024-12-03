@@ -2,6 +2,7 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2024 CERN.
+# Copyright (C) 2024 KTH Royal Institute of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -170,8 +171,6 @@ that combines loaders in predictable way. You can use
 'config loader'
 
 """
-
-from __future__ import absolute_import, print_function
 
 from .default import InvenioConfigDefault
 from .entrypoint import InvenioConfigEntryPointModule
