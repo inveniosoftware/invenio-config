@@ -2,13 +2,12 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
+# Copyright (C) 2024 KTH Royal Institute of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Simple tests."""
-
-from __future__ import absolute_import, print_function
 
 import os
 import shutil
@@ -177,9 +176,9 @@ def test_env():
 
     os.environ["MYPREFIX_TESTVAR"] = "True"
     os.environ["MYPREFIX_JUSTASTRING"] = "This is just a string"
-    os.environ[
-        "MYPREFIX_COMPLEX_DICT"
-    ] = "{'complex': {'python': 'dict'}, 'with': ['list', 'and', 1234]}"
+    os.environ["MYPREFIX_COMPLEX_DICT"] = (
+        "{'complex': {'python': 'dict'}, 'with': ['list', 'and', 1234]}"
+    )
     InvenioConfigEnvironment(app, prefix="MYPREFIX_")
     assert app.config.get("TESTVAR") is True
     assert app.config.get("JUSTASTRING") == "This is just a string"
