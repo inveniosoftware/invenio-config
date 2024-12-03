@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version <next>
+
+- Drop support for Python 2
+
 Version 1.0.4 (released 2024-01-28)
 
 - Allow table HTML tags for sanitization
