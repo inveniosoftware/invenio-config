@@ -177,9 +177,9 @@ def test_env():
 
     os.environ["MYPREFIX_TESTVAR"] = "True"
     os.environ["MYPREFIX_JUSTASTRING"] = "This is just a string"
-    os.environ[
-        "MYPREFIX_COMPLEX_DICT"
-    ] = "{'complex': {'python': 'dict'}, 'with': ['list', 'and', 1234]}"
+    os.environ["MYPREFIX_COMPLEX_DICT"] = (
+        "{'complex': {'python': 'dict'}, 'with': ['list', 'and', 1234]}"
+    )
     InvenioConfigEnvironment(app, prefix="MYPREFIX_")
     assert app.config.get("TESTVAR") is True
     assert app.config.get("JUSTASTRING") == "This is just a string"
