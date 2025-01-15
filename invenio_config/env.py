@@ -2,7 +2,7 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
-# Copyright (C) 2024 KTH Royal Institute of Technology.
+# Copyright (C) 2024-2025 KTH Royal Institute of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -66,11 +66,9 @@ def build_db_uri():
     """
     default_uri = "postgresql+psycopg2://invenio-app-rdm:invenio-app-rdm@localhost/invenio-app-rdm"
 
-    uri = os.environ.get("INVENIO_SQLALCHEMY_DATABASE_URI") or os.environ.get(
-        "SQLALCHEMY_DATABASE_URI"
-    )
-    if uri:
-        return uri
+    for key in ["INVENIO_SQLALCHEMY_DATABASE_URI", "SQLALCHEMY_DATABASE_URI"]:
+        if uri := os.environ.get(key):
+            return uri
 
     db_params = _get_env_var(
         "INVENIO_DB", ["user", "password", "host", "port", "name", "protocol"]
@@ -95,9 +93,9 @@ def build_broker_url():
     """
     default_url = "amqp://guest:guest@localhost:5672/"
 
-    broker_url = os.environ.get("INVENIO_BROKER_URL") or os.environ.get("BROKER_URL")
-    if broker_url:
-        return broker_url
+    for key in ["INVENIO_BROKER_URL", "BROKER_URL"]:
+        if broker_url := os.environ.get(key):
+            return broker_url
 
     broker_params = _get_env_var(
         "INVENIO_AMQP_BROKER", ["user", "password", "host", "port", "protocol"]
@@ -122,11 +120,10 @@ def build_redis_url(db=None):
     db = db if db is not None else 0
     default_url = f"redis://localhost:6379/{db}"
 
-    cache_url = os.environ.get("INVENIO_CACHE_REDIS_URL") or os.environ.get(
-        "CACHE_REDIS_URL"
-    )
-    if cache_url and cache_url.startswith(("redis://", "rediss://", "unix://")):
-        return cache_url
+    for key in ["INVENIO_CACHE_REDIS_URL", "CACHE_REDIS_URL"]:
+        if cache_url := os.environ.get(key):
+            if cache_url.startswith(("redis://", "rediss://", "unix://")):
+                return cache_url
 
     redis_params = _get_env_var(
         "INVENIO_KV_CACHE", ["host", "port", "password", "protocol"]
