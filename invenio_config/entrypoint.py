@@ -3,6 +3,7 @@
 # This file is part of Invenio.
 # Copyright (C) 2017-2018 CERN.
 # Copyright (C) 2024 KTH Royal Institute of Technology.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -12,7 +13,7 @@
 
 from operator import attrgetter
 
-import pkg_resources
+from invenio_base.utils import entry_points
 
 
 class InvenioConfigEntryPointModule(object):
@@ -37,9 +38,10 @@ class InvenioConfigEntryPointModule(object):
         """Initialize Flask application."""
         if self.entry_point_group:
             eps = sorted(
-                pkg_resources.iter_entry_points(self.entry_point_group),
+                entry_points(group=self.entry_point_group),
                 key=attrgetter("name"),
             )
+
             for ep in eps:
-                app.logger.debug("Loading config for entry point {}".format(ep))
+                app.logger.debug(f"Loading config for entry point {ep.value}")
                 app.config.from_object(ep.load())

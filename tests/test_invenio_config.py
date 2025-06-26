@@ -3,6 +3,7 @@
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
 # Copyright (C) 2024 KTH Royal Institute of Technology.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -17,7 +18,6 @@ from os.path import join
 
 from flask import Flask
 from mock import patch
-from pkg_resources import EntryPoint
 
 from invenio_config import (
     InvenioConfigDefault,
@@ -30,13 +30,13 @@ from invenio_config import (
 from invenio_config.default import ALLOWED_HTML_ATTRS, ALLOWED_HTML_TAGS
 
 
-class ConfigEP(EntryPoint):
+class ConfigEP:
     """Mocking of entrypoint."""
 
     def __init__(self, name=None, module_name=None, **kwargs):
         """Save keyword arguments as config."""
         self.name = name
-        self.module_name = module_name
+        self.value = module_name
         self.kwargs = kwargs
 
     def __str__(self):
@@ -55,13 +55,13 @@ class ConfigEP(EntryPoint):
 
 
 def _mock_ep(eps):
-    """Mock for pkg_resources.iter_entry_points."""
+    """Mock for importlib.metadata.entry_points."""
 
-    def iter_entry_points(name):
+    def entry_points(group=None):
         for ep in eps:
             yield ep
 
-    return iter_entry_points
+    return entry_points
 
 
 def test_version():
@@ -83,14 +83,17 @@ def test_module():
     assert app.config.get("TESTVAR", False)
 
 
-@patch("pkg_resources.iter_entry_points", _mock_ep([ConfigEP(TESTVAR=True)]))
 def test_entry_point():
     """Test entry point."""
     app = Flask("testapp")
 
-    assert not app.config.get("TESTVAR", False)
-    InvenioConfigEntryPointModule(app)
-    assert app.config.get("TESTVAR", False)
+    with patch(
+        "importlib.metadata.entry_points",
+        return_value=[ConfigEP(TESTVAR=True)],
+    ):
+        assert not app.config.get("TESTVAR", False)
+        InvenioConfigEntryPointModule(app)
+        assert app.config.get("TESTVAR", False)
 
 
 UNSORTED_ENTRY_POINTS = [
@@ -100,13 +103,13 @@ UNSORTED_ENTRY_POINTS = [
 ]
 
 
-@patch("pkg_resources.iter_entry_points", _mock_ep(UNSORTED_ENTRY_POINTS))
 def test_entry_points_loading_order():
     """Test that entry points are loaded alphabetically ordered."""
     app = Flask("testapp")
 
-    InvenioConfigEntryPointModule(app)
-    assert app.config["TESTVAR"] == "last"
+    with patch("importlib.metadata.entry_points", return_value=UNSORTED_ENTRY_POINTS):
+        InvenioConfigEntryPointModule(app)
+        assert app.config["TESTVAR"] == "last"
 
 
 def test_folder():
@@ -189,7 +192,7 @@ def test_env():
 
 
 @patch(
-    "pkg_resources.iter_entry_points",
+    "importlib.metadata.entry_points",
     _mock_ep([ConfigEP(EP="ep", MODULE="ep", FOLDER="ep", KWARGS="ep", ENV="ep")]),
 )
 def test_conf_loader_factory():
