@@ -1,6 +1,7 @@
 ..
     This file is part of Invenio.
     Copyright (C) 2015-2024 CERN.
+    Copyright (C) 2025 Graz University of Technology.
 
     Invenio is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
@@ -8,9 +9,14 @@
 Changes
 =======
 
-Version <next>
+Version 1.1.0 (released 2025-07-01)
 
-- Drop support for Python 2
+- fix: pkg_resources DeprecationWarning
+- setup: change to reusable workflows
+- chore: remove unnecessary __future__ imports
+- ci: use shared workflow for Python tests
+- style: autoformat with black
+- deps: update pytest-black and pytest-invenio versions
 
 Version 1.0.4 (released 2024-01-28)
 

@@ -3,6 +3,7 @@
 # This file is part of Invenio.
 # Copyright (C) 2015-2024 CERN.
 # Copyright (C) 2024 KTH Royal Institute of Technology.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -179,7 +180,7 @@ from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 from .utils import create_conf_loader, create_config_loader
 
-__version__ = "1.0.4"
+__version__ = "1.1.0"
 
 __all__ = (
     "__version__",
