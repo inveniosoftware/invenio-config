@@ -10,7 +10,6 @@
 
 """Invenio entry point module configuration."""
 
-
 from operator import attrgetter
 
 from invenio_base.utils import entry_points
