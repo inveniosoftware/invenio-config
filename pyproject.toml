@@ -1,5 +1,63 @@
+# SPDX-FileCopyrightText: 2015-2018 CERN.
+# SPDX-FileCopyrightText: 2022-2025 Graz University of Technology.
+# SPDX-FileCopyrightText: 2025 KTH Royal Institute of Technology.
+# SPDX-FileCopyrightText: 2025 Northwestern University.
+# SPDX-FileCopyrightText: 2026 TU Wien.
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "invenio-config"
+description = "Invenio configuration loader."
+readme = "README.rst"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+  { name = "CERN", email = "info@inveniosoftware.org" },
+]
+keywords = [
+  "config",
+  "invenio",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+]
+dependencies = [
+  "flask>=0.11.1",
+  "invenio-base>=2.3.0,<3.0.0",
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/inveniosoftware/invenio-config"
+
+[project.optional-dependencies]
+tests = [
+  "mock>=2.0.0",
+  "pytest-black>=0.6.0",
+  "pytest-invenio>=3.0.0,<4.0.0",
+  "sphinx>=1.8.0",
+]
 
 [build-system]
-requires = ["setuptools", "wheel", "babel>2.8"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
+[tool.hatch.version]
+path = "invenio_config/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/invenio_config",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.pydocstyle]
+add_ignore = ""
+
+[tool.pytest.ini_options]
+addopts = '--black --isort --pydocstyle --doctest-glob="*.rst" --doctest-modules --cov=invenio_config --cov-report=term-missing'
+filterwarnings = ["ignore::pytest.PytestDeprecationWarning"]
+testpaths = "tests invenio_config"
+live_server_scope = "module"
