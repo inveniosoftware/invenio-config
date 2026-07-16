@@ -1,10 +1,18 @@
 ..
     SPDX-FileCopyrightText: 2015-2024 CERN.
     SPDX-FileCopyrightText: 2025 Graz University of Technology.
+    SPDX-FileCopyrightText: 2026 TU Wien.
     SPDX-License-Identifier: MIT
 
 Changes
 =======
+
+Version v1.1.1 (released 2026-07-16)
+
+- chore(setup): migrate from setuptools to hatchling
+- chore(cleanup): remove outdated and unnecessary file
+- chore(licenses): update license headers to use SPDX
+- tests: extend support to Python 3.14
 
 Version 1.1.0 (released 2025-07-01)
 

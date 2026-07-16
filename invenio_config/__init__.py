@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2015-2024 CERN.
 # SPDX-FileCopyrightText: 2024 KTH Royal Institute of Technology.
 # SPDX-FileCopyrightText: 2025 Graz University of Technology.
+# SPDX-FileCopyrightText: 2026 TU Wien.
 # SPDX-License-Identifier: MIT
 
 """Invenio configuration loader.
@@ -175,7 +176,7 @@ from .folder import InvenioConfigInstanceFolder
 from .module import InvenioConfigModule
 from .utils import create_conf_loader, create_config_loader
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 __all__ = (
     "__version__",
